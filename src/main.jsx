@@ -7,12 +7,25 @@ import {
   BookingProvider,
 } from "./context/BookingContext";
 
+import ErrorBoundary
+  from "./components/ErrorBoundary";
+
 ReactDOM.createRoot(
   document.getElementById("root")
 ).render(
   <React.StrictMode>
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
+    <ErrorBoundary>
+
+      <ThemeProvider>
+
+        <BookingProvider>
+
+          <App />
+
+        </BookingProvider>
+
+      </ThemeProvider>
+
+    </ErrorBoundary>
   </React.StrictMode>
 );

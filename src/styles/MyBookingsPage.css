@@ -72,3 +72,21 @@
   }
 
 }
+
+.success-message {
+
+  background: #22c55e;
+
+  color: white;
+
+  padding: 15px;
+
+  border-radius: 12px;
+
+  margin-bottom: 20px;
+
+  text-align: center;
+
+  font-weight: 600;
+
+}

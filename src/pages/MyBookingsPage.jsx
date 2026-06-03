@@ -47,6 +47,11 @@ function MyBookingsPage() {
   const [filterType, setFilterType] =
     useState("all");
 
+  const [
+    successMessage,
+    setSuccessMessage
+  ] = useState("");
+
   const filteredBookings =
     bookings.filter(
       (booking) => {
@@ -112,6 +117,17 @@ function MyBookingsPage() {
     <>
       <Navbar />
       <div className="page-container">
+        {
+          successMessage && (
+
+            <div
+              className="success-message"
+            >
+              {successMessage}
+            </div>
+
+          )
+        }
         <h1 className="page-title">
           My Bookings
         </h1>
@@ -255,6 +271,16 @@ function MyBookingsPage() {
             setShowDeleteModal(
               false
             );
+
+            setSuccessMessage(
+              "Booking cancelled successfully."
+            );
+
+            setTimeout(() => {
+
+              setSuccessMessage("");
+
+            }, 3000);
 
           }}
 

@@ -57,3 +57,14 @@ body.dark .navbar-links a {
 body.dark .navbar-logo {
     color: var(--gold);
 }
+
+.active-link {
+
+  color: var(--gold);
+
+  font-weight: 700;
+
+  border-bottom:
+    2px solid var(--gold);
+
+}

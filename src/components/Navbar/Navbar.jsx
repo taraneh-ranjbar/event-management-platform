@@ -1,27 +1,49 @@
-import { Link } from "react-router-dom";
+import {
+  Link,
+  useLocation
+} from "react-router-dom";
 
 import "../../styles/Navbar.css";
 
 import ThemeToggle
-from "../ThemeToggle/ThemeToggle"
+  from "../ThemeToggle/ThemeToggle"
 
 function Navbar() {
+  const location = useLocation();
   return (
     <nav className="navbar">
-       <div className="navbar-logo">
-    🎫 Event Manager
-  </div>
+      <div className="navbar-logo">
+        🎫 Event Manager
+      </div>
 
-   <div className="navbar-links">
-      <Link to="/events">Events</Link>
+      <div className="navbar-links">
 
-      {" | "}
+        <Link
+          to="/events"
+          className={
+            location.pathname === "/events" ||
+              location.pathname === "/"
+              ? "active-link"
+              : ""
+          }
+        >
+          Events
+        </Link>
 
-      <Link to="/my-bookings">
-        My Bookings
-      </Link>
+        {" | "}
 
-      {" | "}
+        <Link
+          to="/my-bookings"
+          className={
+            location.pathname === "/my-bookings"
+              ? "active-link"
+              : ""
+          }
+        >
+          My Bookings
+        </Link>
+
+        {" | "}
       </div>
 
       <ThemeToggle />
