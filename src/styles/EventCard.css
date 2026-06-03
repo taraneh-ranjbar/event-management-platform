@@ -1,0 +1,110 @@
+.event-card {
+  background: white;
+
+  border-radius: 20px;
+
+  padding: 24px;
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,.08);
+
+  transition:
+    all .3s ease;
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  min-height: 320px;
+
+  border-top:
+  4px solid var(--gold);
+}
+
+.event-card:hover {
+  transform: translateY(-8px);
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,.15);
+}
+
+.event-title {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 15px;
+}
+
+.favorite-icon {
+  cursor: pointer;
+
+  font-size: 24px;
+}
+
+.event-detail {
+  margin-bottom: 10px;
+}
+
+.event-card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.event-card {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.event-card p {
+  margin: 8px 0;
+}
+
+.event-card strong {
+  color: #374151;
+}
+
+.details-btn {
+  margin-top: 20px;
+
+  width: 100%;
+
+  border: none;
+
+  border-radius: 12px;
+
+  padding: 12px;
+
+  background: #2563eb;
+
+  color: white;
+
+  font-size: 15px;
+
+  cursor: pointer;
+  background: var(--green);
+
+  color: white;
+}
+
+.details-btn:hover {
+  background: var(--green-light);
+}
+
+body.dark .event-card {
+  background: #1e293b;
+
+  color: white;
+}
+
+body.dark .event-card strong {
+  color: white;
+}
+
+body.dark .event-card h2 {
+  color: white;
+}

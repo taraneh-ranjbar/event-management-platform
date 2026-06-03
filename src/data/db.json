@@ -1,0 +1,83 @@
+{
+  "events": [
+    {
+      "id": "1",
+      "title": "React Conference 2026",
+      "description": "Annual React developers conference",
+      "category": "Technology",
+      "date": "2026-07-15",
+      "time": "09:00 AM",
+      "location": "Toronto",
+      "organizerName": "Tech Events Inc",
+      "ticketTypes": [
+        {
+          "id": "1",
+          "name": "General",
+          "price": 99,
+          "available": 100
+        },
+        {
+          "id": "2",
+          "name": "VIP",
+          "price": 299,
+          "available": 20
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Music Festival",
+      "description": "Live music festival",
+      "category": "Music",
+      "date": "2026-08-10",
+      "time": "06:00 PM",
+      "location": "Vancouver",
+      "organizerName": "Music Canada",
+      "ticketTypes": [
+        {
+          "id": "1",
+          "name": "Regular",
+          "price": 50,
+          "available": 300
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "NBA Fan Event",
+      "description": "Meet basketball fans",
+      "category": "Sports",
+      "date": "2026-09-20",
+      "time": "02:00 PM",
+      "location": "Montreal",
+      "organizerName": "Sports Hub",
+      "ticketTypes": [
+        {
+          "id": "1",
+          "name": "General",
+          "price": 25,
+          "available": 500
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Art Expo",
+      "description": "Modern art exhibition",
+      "category": "Arts",
+      "date": "2026-10-05",
+      "time": "11:00 AM",
+      "location": "Ottawa",
+      "organizerName": "Art Center",
+      "ticketTypes": [
+        {
+          "id": "1",
+          "name": "Entry",
+          "price": 15,
+          "available": 200
+        }
+      ]
+    }
+  ],
+  "bookings": []
+}
