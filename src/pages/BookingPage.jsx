@@ -31,12 +31,17 @@ function BookingPage() {
       initialState
     );
 
+  const [
+    confirmedBooking,
+    setConfirmedBooking
+  ] = useState(null);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [errors, setErrors] = useState({});
   const [showModal, setShowModal] = useState(false);
+
   const { bookings, setBookings } = useContext(BookingContext);
   const [ticketPrice, setTicketPrice] = useState(99);
   const [event, setEvent] = useState(null);
@@ -55,7 +60,7 @@ function BookingPage() {
     loadEvent();
   }, [id]);
 
-    if (!event) {
+  if (!event) {
     return (
       <>
         <h2>Loading...</h2>
@@ -63,9 +68,6 @@ function BookingPage() {
     );
   }
 
-
-  console.log("id =", id);
-  console.log("event =", event);
 
   const handleBooking = () => {
 
@@ -96,6 +98,10 @@ function BookingPage() {
         state.quantity *
         ticketPrice,
     };
+
+    setConfirmedBooking(
+      newBooking
+    );
 
     setBookings([
       ...bookings,
@@ -241,6 +247,9 @@ function BookingPage() {
         isOpen={showModal}
         onClose={() =>
           setShowModal(false)
+        }
+        booking={
+          confirmedBooking
         }
       />
     </>

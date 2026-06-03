@@ -1,0 +1,20 @@
+.success-message {
+
+  background: #22c55e;
+
+  color: white;
+
+  padding: 15px;
+
+  margin: 20px;
+
+  border-radius: 12px;
+
+  text-align: center;
+
+  font-weight: 600;
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,.15);
+
+}
