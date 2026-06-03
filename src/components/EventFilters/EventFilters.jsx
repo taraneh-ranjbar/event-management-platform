@@ -11,13 +11,17 @@ function EventFilters({
 }) {
   return (
     <div className="events-toolbar">
-      <select  className="events-select"
+      <span className="events-toolbar__label">Filter &amp; Sort</span>
+
+      <select
+        className="events-select"
         value={selectedCategory}
         onChange={(e) =>
           setSelectedCategory(
             e.target.value
           )
         }
+        aria-label="Filter by category"
       >
         <option value="All">
           All Categories
@@ -40,13 +44,15 @@ function EventFilters({
         </option>
       </select>
 
-      <select className="events-select"
+      <select
+        className="events-select"
         value={selectedPrice}
         onChange={(e) =>
           setSelectedPrice(
             e.target.value
           )
         }
+        aria-label="Filter by price"
       >
         <option value="All">
           All Prices
@@ -65,11 +71,13 @@ function EventFilters({
         </option>
       </select>
 
-      <select className="events-select"
+      <select
+        className="events-select"
         value={selectedSort}
         onChange={(e) =>
             setSelectedSort(e.target.value)
         }
+        aria-label="Sort events"
         >
         <option value="None">
             Sort By

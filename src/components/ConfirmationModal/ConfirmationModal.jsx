@@ -11,78 +11,75 @@ function ConfirmationModal({
     return null;
   }
 
-  return (
-    <div style={overlayStyle}>
-      <div style={modalStyle}>
+  return createPortal(
+    <div
+      className="modal-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="confirmation-modal-title"
+    >
+      <div className="modal-panel">
+        <div
+          className="modal-panel__icon modal-panel__icon--success"
+          aria-hidden="true"
+        >
+          ✓
+        </div>
 
-        <h2>
+        <h2
+          id="confirmation-modal-title"
+          className="modal-panel__title"
+        >
           Booking Confirmed 🎉
         </h2>
 
-        <p>
+        <p className="modal-panel__text">
           Booking created successfully!
         </p>
 
-        <p>
-          Reference Number:
-          <strong>
-            {booking?.referenceNumber}
-          </strong>
-        </p>
+        <div className="modal-panel__details">
+          <div className="modal-panel__row">
+            <span>Reference</span>
+            <strong className="modal-panel__ref">
+              {booking?.referenceNumber}
+            </strong>
+          </div>
 
-        <p>
-          Event:
-          <strong>
-            {booking?.eventName}
-          </strong>
-        </p>
+          <div className="modal-panel__row">
+            <span>Event</span>
+            <strong>{booking?.eventName}</strong>
+          </div>
 
-        <p>
-          Total Amount:
-          <strong>
-            ${booking?.total}
-          </strong>
-        </p>
+          <div className="modal-panel__row">
+            <span>Total Amount</span>
+            <strong>${booking?.total}</strong>
+          </div>
+        </div>
 
-        <button
-          onClick={onClose}
-        >
-          Close
-        </button>
+        <div className="modal-panel__actions">
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={onClose}
+          >
+            Close
+          </button>
 
-        <button
-          onClick={() =>
-            window.location.href =
-            "/my-bookings"
-          }
-        >
-          View My Bookings
-        </button>
-
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() =>
+              window.location.href =
+              "/my-bookings"
+            }
+          >
+            View My Bookings
+          </button>
+        </div>
       </div>
-    </div>
+    </div>,
+    document.getElementById("modal-root")
   );
 }
-
-const overlayStyle = {
-  position: "fixed",
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  backgroundColor:
-    "rgba(0,0,0,0.5)",
-
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center"
-};
-
-const modalStyle = {
-  background: "white",
-  padding: "30px",
-  borderRadius: "12px",
-  textAlign: "center"
-};
 
 export default ConfirmationModal;

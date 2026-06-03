@@ -1,7 +1,8 @@
 function LoadingSpinner() {
   return (
-    <div>
-      <h2>Loading...</h2>
+    <div className="loading-screen">
+      <div className="spinner" role="status" aria-label="Loading" />
+      <p className="loading-text">Loading...</p>
     </div>
   );
 }

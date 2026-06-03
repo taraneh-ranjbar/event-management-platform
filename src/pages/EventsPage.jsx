@@ -121,9 +121,20 @@ function EventsPage() {
   }
 
   return (
-    <>
-      <div className="events-page">
-        <Navbar />
+    <div className="events-page">
+      <Navbar />
+
+      <header className="events-hero">
+        <h1 className="events-hero__title">Discover Events</h1>
+        <p className="events-hero__subtitle">
+          Browse premium experiences curated for you
+        </p>
+        <span className="badge badge--count">
+          {filteredEvents.length} event{filteredEvents.length !== 1 ? "s" : ""}
+        </span>
+      </header>
+
+      <div className="events-toolbar-section">
         <SearchBar
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
@@ -144,30 +155,28 @@ function EventsPage() {
             setSelectedSort
           }
         />
-        <h1 className="events-title">Events Page</h1>
-
-
-        <div className="events-count">
-          Total Events: {filteredEvents.length}
-        </div>
-
-        <div className="events-grid">
-          {
-            filteredEvents.length === 0 ? (
-              <h2>No Events Found</h2>
-            ) : (
-              sortedEvents.map((event) => (
-                <EventCard
-                  key={event.id}
-                  event={event}
-                />
-              ))
-            )}
-        </div>
       </div>
 
-
-    </>
+      <div className="events-grid">
+        {
+          filteredEvents.length === 0 ? (
+            <div className="empty-state">
+              <div className="empty-state__icon" aria-hidden="true">🎭</div>
+              <h2 className="empty-state__title">No Events Found</h2>
+              <p className="empty-state__text">
+                Try adjusting your search or filters
+              </p>
+            </div>
+          ) : (
+            sortedEvents.map((event) => (
+              <EventCard
+                key={event.id}
+                event={event}
+              />
+            ))
+          )}
+      </div>
+    </div>
   );
 
 }

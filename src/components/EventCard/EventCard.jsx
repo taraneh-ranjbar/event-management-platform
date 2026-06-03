@@ -57,55 +57,55 @@ function EventCard({ event }) {
     event.ticketTypes?.[0];
 
   return (
-    <div className="event-card">
-      <Link to={`/events/${event.id}`}>
+    <article className="event-card">
+      <button
+        type="button"
+        className="favorite-icon"
+        onClick={toggleFavorite}
+        aria-label={
+          favorite
+            ? "Remove from favorites"
+            : "Add to favorites"
+        }
+      >
+        {favorite ? "❤️" : "🤍"}
+      </button>
 
+      <Link
+        to={`/events/${event.id}`}
+        className="event-card__link"
+      >
+        <div className="event-card__header">
+          <h2 className="event-title">
+            {event.title}
+          </h2>
+        </div>
 
-        <h2 className="event-title">
-          {event.title}
+        <span className="badge">{event.category}</span>
 
-          <span className="favorite-icon"
-            onClick={toggleFavorite}
-          >
-            {favorite ? "❤️" : "🤍"}
-          </span>
-        </h2>
+        <div className="event-card__meta">
+          <p className="event-card__row">
+            <span className="event-card__row-icon" aria-hidden="true">📅</span>
+            <span><strong>Date:</strong> {event.date}</span>
+          </p>
 
-        <p>🏷 <strong>Category:</strong>{" "} {event.category}</p>
+          <p className="event-card__row">
+            <span className="event-card__row-icon" aria-hidden="true">📍</span>
+            <span><strong>Location:</strong> {event.location}</span>
+          </p>
+        </div>
 
-        <p>📅 <strong>Date:</strong>{" "} {event.date}</p>
-
-        <p>📍 <strong>Location:</strong>{" "} {event.location}</p>
-
-        <p>💰 <strong>Price:</strong>{" "} ${firstTicket?.price}</p>
-
-        <button className="details-btn">
-          View Details
-        </button>
-
-        
-        {/*   <p>
-          <strong>Category:</strong>{" "}
-          {event.category}
-        </p>
-
-        <p>
-          <strong>Date:</strong>{" "}
-          {event.date}
-        </p>
-
-        <p>
-          <strong>Location:</strong>{" "}
-          {event.location}
-        </p>
-
-        <p>
-          <strong>Price:</strong> $
-          {firstTicket?.price}
-        </p> */}
+        <div className="event-card__footer">
+          <div>
+            <span className="event-card__price-label">From</span>
+            <span className="event-card__price">
+              ${firstTicket?.price}
+            </span>
+          </div>
+          <span className="details-btn">View Details</span>
+        </div>
       </Link>
-    </div>
-
+    </article>
   );
 }
 

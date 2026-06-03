@@ -10,43 +10,47 @@ import ThemeToggle
 
 function Navbar() {
   const location = useLocation();
+  const isEventsActive =
+    location.pathname === "/events" ||
+    location.pathname === "/";
+
   return (
-    <nav className="navbar">
+    <nav className="navbar" aria-label="Main navigation">
       <div className="navbar-logo">
         🎫 Event Manager
       </div>
 
-      <div className="navbar-links">
+      <div className="navbar-center">
+        <div className="navbar-links">
+          <Link
+            to="/events"
+            className={isEventsActive ? "active-link" : ""}
+            aria-current={isEventsActive ? "page" : undefined}
+          >
+            Events
+          </Link>
 
-        <Link
-          to="/events"
-          className={
-            location.pathname === "/events" ||
-              location.pathname === "/"
-              ? "active-link"
-              : ""
-          }
-        >
-          Events
-        </Link>
-
-        {" | "}
-
-        <Link
-          to="/my-bookings"
-          className={
-            location.pathname === "/my-bookings"
-              ? "active-link"
-              : ""
-          }
-        >
-          My Bookings
-        </Link>
-
-        {" | "}
+          <Link
+            to="/my-bookings"
+            className={
+              location.pathname === "/my-bookings"
+                ? "active-link"
+                : ""
+            }
+            aria-current={
+              location.pathname === "/my-bookings"
+                ? "page"
+                : undefined
+            }
+          >
+            My Bookings
+          </Link>
+        </div>
       </div>
 
-      <ThemeToggle />
+      <div className="navbar-actions">
+        <ThemeToggle />
+      </div>
     </nav>
   );
 }

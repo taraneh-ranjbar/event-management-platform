@@ -29,17 +29,14 @@ class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
 
       return (
-        <div
-          style={{
-            padding: "40px",
-            textAlign: "center"
-          }}
-        >
-          <h1>
+        <div className="error-fallback">
+          <div className="error-fallback__icon" aria-hidden="true">
+            ⚠️
+          </div>
+          <h1 className="error-fallback__title">
             Something went wrong.
           </h1>
-
-          <p>
+          <p className="error-fallback__text">
             Please refresh the page.
           </p>
         </div>

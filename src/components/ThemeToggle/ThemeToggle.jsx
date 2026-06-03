@@ -8,20 +8,26 @@ function ThemeToggle() {
     toggleTheme
   } = useTheme();
 
+  const isLight = theme === "light";
+
   return (
-
     <button
+      type="button"
+      className="theme-toggle"
       onClick={toggleTheme}
-    >
-
-      {
-        theme === "light"
-          ? "🌙 Dark Mode"
-          : "☀️ Light Mode"
+      aria-label={
+        isLight
+          ? "Switch to dark mode"
+          : "Switch to light mode"
       }
-
+    >
+      <span className="theme-toggle__icon" aria-hidden="true">
+        {isLight ? "🌙" : "☀️"}
+      </span>
+      <span className="theme-toggle__label">
+        {isLight ? "Dark" : "Light"}
+      </span>
     </button>
-
   );
 
 }

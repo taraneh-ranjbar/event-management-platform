@@ -97,59 +97,63 @@ function MyBookingsPage() {
 
   if (bookings.length === 0) {
     return (
-      <>
+      <div className="my-bookings-page">
         <Navbar />
 
-        <h1>My Bookings</h1>
-
         <div className="empty-bookings">
-          <h2>No Bookings Found</h2>
-
-          <p>
-            You haven't booked any events yet.
-          </p>
+          <div className="empty-state">
+            <div className="empty-state__icon" aria-hidden="true">📋</div>
+            <h1 className="empty-state__title">My Bookings</h1>
+            <h2>No Bookings Found</h2>
+            <p className="empty-state__text">
+              You haven&apos;t booked any events yet.
+            </p>
+          </div>
         </div>
-      </>
+      </div>
     );
   }
 
   return (
-    <>
+    <div className="my-bookings-page">
       <Navbar />
+
       <div className="page-container">
         {
           successMessage && (
 
             <div
               className="success-message"
+              role="status"
             >
               {successMessage}
             </div>
 
           )
         }
-        <h1 className="page-title">
-          My Bookings
-        </h1>
 
-        <div>
+        <header className="my-bookings-header">
+          <h1 className="page-title">
+            My Bookings
+          </h1>
+        </header>
 
-          <label>
+        <div className="my-bookings-filter">
+          <label className="my-bookings-filter__label" htmlFor="booking-filter">
             Filter:
           </label>
 
           <select
-
+            id="booking-filter"
+            className="form-select"
             value={
               filterType
             }
-
             onChange={(e) =>
               setFilterType(
                 e.target.value
               )
             }
-
           >
 
             <option value="all">
@@ -175,13 +179,13 @@ function MyBookingsPage() {
 
             filteredBookings.length === 0 ? (
 
-              <div>
-
-                <h2>
+              <div className="empty-state">
+                <div className="empty-state__icon" aria-hidden="true">🔍</div>
+                <h2 className="empty-state__title">
                   No Bookings Found
                 </h2>
 
-                <p>
+                <p className="empty-state__text">
                   No bookings match
                   the selected filter.
                 </p>
@@ -194,58 +198,93 @@ function MyBookingsPage() {
               filteredBookings.map(
                 (booking) => (
 
-                  <div key={booking.id} className="booking-card">
+                  <article key={booking.id} className="booking-card">
 
-                    <h3 className="booking-name">
-                      {booking.name}
-                    </h3>
+                    <div className="booking-card__header">
+                      <h3 className="booking-name">
+                        {booking.name}
+                      </h3>
+                      <span className="badge badge--success">
+                        {booking.status}
+                      </span>
+                    </div>
 
-                    <p>Event ID: {booking.eventId}</p>
+                    <div className="booking-card__body">
+                      <div className="booking-card__field">
+                        <span className="booking-card__label">Event ID</span>
+                        <span className="booking-card__value">{booking.eventId}</span>
+                      </div>
 
-                    <p>Event Name:{" "}
-                      {booking.eventName}
-                    </p>
+                      <div className="booking-card__field">
+                        <span className="booking-card__label">Event</span>
+                        <span className="booking-card__value">{booking.eventName}</span>
+                      </div>
 
-                    <p>
-                      Event Date: {booking.eventDate}
-                    </p>
+                      <div className="booking-card__field">
+                        <span className="booking-card__label">Event Date</span>
+                        <span className="booking-card__value">{booking.eventDate}</span>
+                      </div>
 
-                    <p>Ticket Type: {booking.ticketType}</p>
+                      <div className="booking-card__field">
+                        <span className="booking-card__label">Ticket Type</span>
+                        <span className="booking-card__value">{booking.ticketType}</span>
+                      </div>
 
-                    <p>Ticket Price: ${booking.ticketPrice}</p>
+                      <div className="booking-card__field">
+                        <span className="booking-card__label">Quantity</span>
+                        <span className="booking-card__value">{booking.quantity}</span>
+                      </div>
 
-                    <p>Quantity: {booking.quantity}</p>
+                      <div className="booking-card__field">
+                        <span className="booking-card__label">Ticket Price</span>
+                        <span className="booking-card__value">${booking.ticketPrice}</span>
+                      </div>
 
-                    <p>Total: ${booking.total}</p>
+                      <div className="booking-card__field">
+                        <span className="booking-card__label">Total</span>
+                        <span className="booking-card__value booking-card__value--price">
+                          ${booking.total}
+                        </span>
+                      </div>
 
-                    <p>Email: {booking.email}</p>
+                      <div className="booking-card__field">
+                        <span className="booking-card__label">Email</span>
+                        <span className="booking-card__value">{booking.email}</span>
+                      </div>
 
-                    <p>Phone: {booking.phone}</p>
+                      <div className="booking-card__field">
+                        <span className="booking-card__label">Phone</span>
+                        <span className="booking-card__value">{booking.phone}</span>
+                      </div>
 
-                    <p>
-                      Booking Date: {booking.bookingDate}
-                    </p>
+                      <div className="booking-card__field">
+                        <span className="booking-card__label">Booking Date</span>
+                        <span className="booking-card__value">{booking.bookingDate}</span>
+                      </div>
 
-                    <p>
-                      Reference: {booking.referenceNumber}
-                    </p>
+                      <div className="booking-card__field booking-card__field--full">
+                        <span className="booking-card__label">Reference</span>
+                        <span className="booking-card__value booking-card__value--mono">
+                          {booking.referenceNumber}
+                        </span>
+                      </div>
+                    </div>
 
-                    <p>
-                      Status: {booking.status}
-                    </p>
+                    <div className="booking-card__footer">
+                      <button
+                        type="button"
+                        className="btn btn-outline-danger delete-btn"
+                        onClick={() =>
+                          openDeleteModal(
+                            booking.id
+                          )
+                        }
+                      >
+                        Delete Booking
+                      </button>
+                    </div>
 
-
-                    <button className="delete-btn"
-                      onClick={() =>
-                        openDeleteModal(
-                          booking.id
-                        )
-                      }
-                    >
-                      Delete Booking
-                    </button>
-
-                  </div>
+                  </article>
                 )
               ))}
         </div>
@@ -288,7 +327,7 @@ function MyBookingsPage() {
 
       </div>
 
-    </>
+    </div>
   );
 }
 

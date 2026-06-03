@@ -12,16 +12,21 @@ function SearchBar({
   }, []);
 
   return (
-    <div style={{ margin: "20px" }}>
-      <input className="events-search"
-        ref={inputRef}
-        type="text"
-        placeholder="Search events..."
-        value={searchTerm}
-        onChange={(e) =>
-          setSearchTerm(e.target.value)
-        }
-      />
+    <div className="search-bar">
+      <div className="search-bar__wrapper">
+        <span className="search-bar__icon" aria-hidden="true">🔍</span>
+        <input
+          className="events-search"
+          ref={inputRef}
+          type="text"
+          placeholder="Search events by title..."
+          value={searchTerm}
+          onChange={(e) =>
+            setSearchTerm(e.target.value)
+          }
+          aria-label="Search events"
+        />
+      </div>
     </div>
   );
 }

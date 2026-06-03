@@ -19,6 +19,8 @@ import {
 
 import { useContext, } from "react";
 
+import "../styles/BookingPage.css";
+
 
 function BookingPage() {
 
@@ -63,7 +65,11 @@ function BookingPage() {
   if (!event) {
     return (
       <>
-        <h2>Loading...</h2>
+        <Navbar />
+        <div className="booking-loading">
+          <div className="spinner" role="status" aria-label="Loading" />
+          <p className="loading-text">Loading booking...</p>
+        </div>
       </>
     );
   }
@@ -142,106 +148,182 @@ function BookingPage() {
   };
 
   return (
-    <>
+    <div className="booking-page">
       <Navbar />
 
-      <h1>Booking Page</h1>
+      <div className="booking-page__inner">
+        <header className="booking-page__header">
+          <span className="booking-page__event-chip">
+            {event.title}
+          </span>
+          <h1 className="page-title">Complete Your Booking</h1>
+        </header>
 
-      <select
-        value={ticketPrice}
-        onChange={(e) =>
-          setTicketPrice(
-            Number(e.target.value)
-          )
-        }
-      >
-        <option value="99">
-          General - $99
-        </option>
+        <div className="booking-steps" aria-hidden="true">
+          <span className="booking-step booking-step--active">
+            <span className="booking-step__dot" />
+            Tickets
+          </span>
+          <span className="booking-step__sep">—</span>
+          <span className="booking-step booking-step--active">
+            <span className="booking-step__dot" />
+            Details
+          </span>
+          <span className="booking-step__sep">—</span>
+          <span className="booking-step">
+            <span className="booking-step__dot" />
+            Confirm
+          </span>
+        </div>
 
-        <option value="299">
-          VIP - $299
-        </option>
-      </select>
+        <section className="booking-card">
+          <h2 className="booking-card__title">Ticket Selection</h2>
 
-      <h2>
-        Quantity: {state.quantity}
-      </h2>
+          <div className="form-group">
+            <label className="form-label" htmlFor="ticket-type">
+              Ticket Type
+            </label>
+            <select
+              id="ticket-type"
+              className="form-select"
+              value={ticketPrice}
+              onChange={(e) =>
+                setTicketPrice(
+                  Number(e.target.value)
+                )
+              }
+            >
+              <option value="99">
+                General - $99
+              </option>
 
-      <h2>
-        Total: $
-        {state.quantity *
-          ticketPrice}
-      </h2>
+              <option value="299">
+                VIP - $299
+              </option>
+            </select>
+          </div>
 
-      <input
-        type="text"
-        placeholder="Full Name"
-        value={name}
-        onChange={(e) =>
-          setName(e.target.value)
-        }
-      />
-      {errors.name && (
-        <p style={{ color: "red" }}>
-          {errors.name}
-        </p>
-      )}
+          <div className="booking-quantity-row">
+            <span className="booking-quantity-row__label">
+              Quantity: {state.quantity}
+            </span>
+            <div className="quantity-stepper">
+              <button
+                type="button"
+                className="btn btn-gold-outline btn-icon"
+                onClick={() =>
+                  dispatch({
+                    type: "DECREASE_QUANTITY",
+                  })
+                }
+                aria-label="Decrease quantity"
+              >
+                −
+              </button>
+              <span className="quantity-stepper__value">
+                {state.quantity}
+              </span>
+              <button
+                type="button"
+                className="btn btn-gold-outline btn-icon"
+                onClick={() =>
+                  dispatch({
+                    type: "INCREASE_QUANTITY",
+                  })
+                }
+                aria-label="Increase quantity"
+              >
+                +
+              </button>
+            </div>
+          </div>
 
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) =>
-          setEmail(e.target.value)
-        }
-      />
-      {errors.email && (
-        <p style={{ color: "red" }}>
-          {errors.email}
-        </p>
-      )}
+          <div className="booking-summary">
+            <span className="booking-summary__label">Total Amount</span>
+            <span className="booking-summary__total">
+              ${state.quantity * ticketPrice}
+            </span>
+          </div>
+        </section>
 
-      <input
-        type="text"
-        placeholder="Phone"
-        value={phone}
-        onChange={(e) =>
-          setPhone(e.target.value)
-        }
-      />
-      {errors.phone && (
-        <p style={{ color: "red" }}>
-          {errors.phone}
-        </p>
-      )}
+        <section className="booking-card">
+          <h2 className="booking-card__title">Attendee Details</h2>
 
-      <button
-        onClick={() =>
-          dispatch({
-            type: "INCREASE_QUANTITY",
-          })
-        }
-      >
-        +
-      </button>
+          <div className="form-group">
+            <label className="form-label" htmlFor="booking-name">
+              Full Name
+            </label>
+            <input
+              id="booking-name"
+              className="form-input"
+              type="text"
+              placeholder="Full Name"
+              value={name}
+              onChange={(e) =>
+                setName(e.target.value)
+              }
+            />
+            {errors.name && (
+              <p className="field-error">
+                {errors.name}
+              </p>
+            )}
+          </div>
 
-      <button
-        onClick={() =>
-          dispatch({
-            type: "DECREASE_QUANTITY",
-          })
-        }
-      >
-        -
-      </button>
+          <div className="form-group">
+            <label className="form-label" htmlFor="booking-email">
+              Email
+            </label>
+            <input
+              id="booking-email"
+              className="form-input"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) =>
+                setEmail(e.target.value)
+              }
+            />
+            {errors.email && (
+              <p className="field-error">
+                {errors.email}
+              </p>
+            )}
+          </div>
 
-      <button
-        onClick={handleBooking}
-        disabled={!event}
-      >
-        Confirm Booking
-      </button>
+          <div className="form-group">
+            <label className="form-label" htmlFor="booking-phone">
+              Phone
+            </label>
+            <input
+              id="booking-phone"
+              className="form-input"
+              type="text"
+              placeholder="Phone"
+              value={phone}
+              onChange={(e) =>
+                setPhone(e.target.value)
+              }
+            />
+            {errors.phone && (
+              <p className="field-error">
+                {errors.phone}
+              </p>
+            )}
+          </div>
+        </section>
+
+        <div className="booking-actions">
+          <button
+            type="button"
+            className="btn btn-primary btn-full"
+            onClick={handleBooking}
+            disabled={!event}
+          >
+            Confirm Booking
+          </button>
+        </div>
+      </div>
 
       <ConfirmationModal
         isOpen={showModal}
@@ -252,7 +334,7 @@ function BookingPage() {
           confirmedBooking
         }
       />
-    </>
+    </div>
   );
 }
 

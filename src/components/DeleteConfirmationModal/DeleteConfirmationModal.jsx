@@ -14,27 +14,50 @@ function DeleteConfirmationModal({
 
     return createPortal(
 
-        <div className="modal-overlay">
+        <div
+            className="modal-overlay delete-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="delete-modal-title"
+        >
 
-            <div className="modal-content">
+            <div className="modal-panel">
 
-                <h2>
+                <div
+                    className="modal-panel__icon modal-panel__icon--warning"
+                    aria-hidden="true"
+                >
+                    ⚠
+                </div>
+
+                <h2
+                    id="delete-modal-title"
+                    className="modal-panel__title"
+                >
                     Cancel Booking
                 </h2>
 
-                <p>
+                <p className="modal-panel__text">
                     Are you sure you want to
-                    cancel this booking?
+                    cancel this booking? This action cannot be undone.
                 </p>
 
-                <div className="modal-buttons">
+                <div className="modal-panel__actions">
 
-                    <button onClick={onClose}>
-                        Cancel
+                    <button
+                        type="button"
+                        className="btn btn-secondary"
+                        onClick={onClose}
+                    >
+                        Keep Booking
                     </button>
 
-                    <button onClick={onConfirm}>
-                        Yes Delete
+                    <button
+                        type="button"
+                        className="btn btn-danger"
+                        onClick={onConfirm}
+                    >
+                        Yes, Delete
                     </button>
 
                 </div>
