@@ -1,6 +1,6 @@
 # Event Manager
 
-A modern Event Management Platform built with React and Vite that allows users to discover events, book tickets, manage reservations, and personalize their experience with Light/Dark themes.
+A modern Event Management Platform built with React that allows users to discover events, book tickets, manage reservations, and personalize their experience with Light/Dark themes.
 
 ---
 
