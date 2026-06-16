@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Navbar from "../components/Navbar/Navbar";
 
@@ -13,12 +13,15 @@ import SearchBar from "../components/SearchBar/SearchBar";
 import EventFilters from "../components/EventFilters/EventFilters";
 
 import "../styles/EventsPage.css";
+import { useQuery } from "@tanstack/react-query";
 
 function EventsPage() {
-  const [events, setEvents] = useState([]);
+
+
+  /*const [events, setEvents] = useState([]);
 
   const [loading, setLoading] =
-    useState(true);
+    useState(true); */
 
   const [searchTerm, setSearchTerm] =
     useState("");
@@ -32,7 +35,17 @@ function EventsPage() {
   const [selectedSort, setSelectedSort] =
     useState("None");
 
-  useEffect(() => {
+  const {
+    data: events = [],
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["events"],
+    queryFn: getAllEvents,
+    staleTime: 1000 * 60 * 5,
+  });
+
+  /*useEffect(() => {
     const loadEvents = async () => {
       try {
         const data = await getAllEvents();
@@ -45,14 +58,25 @@ function EventsPage() {
     };
 
     loadEvents();
-  }, []);
+  }, []); */
 
 
 
-  if (loading) {
+  /*if (loading) {
+    return <LoadingSpinner />;
+  }*/
+  if (isLoading) {
     return <LoadingSpinner />;
   }
-  console.log("events ------>>> : ", events);
+
+  if (error) {
+    return (
+      <div>
+        Failed to load events
+      </div>
+    );
+  }
+
   const filteredEvents = events.filter(
     (event) => {
       const matchesSearch =
