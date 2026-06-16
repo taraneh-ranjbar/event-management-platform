@@ -17,13 +17,46 @@ import DeleteConfirmationModal
   from "../components/DeleteConfirmationModal/DeleteConfirmationModal";
 
 import "../styles/MyBookingsPage.css";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
+
+import {
+  getAllBookings,
+  deleteBookingApi,
+} from "../services/bookingService";
 
 function MyBookingsPage() {
 
-  const { bookings, deleteBooking } =
-    useContext(
-      BookingContext
-    );
+
+  const queryClient =
+    useQueryClient();
+
+  const {
+    data: bookings = [],
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["bookings"],
+    queryFn: getAllBookings,
+    staleTime: 1000 * 60 * 5,
+  });
+
+  const deleteMutation =
+    useMutation({
+      mutationFn:
+        deleteBookingApi,
+
+      onSuccess: () => {
+
+        queryClient.invalidateQueries({
+          queryKey: ["bookings"],
+        });
+
+      },
+    });
 
   const [
     showDeleteModal,
@@ -94,6 +127,26 @@ function MyBookingsPage() {
 
       }
     );
+
+  if (isLoading) {
+    return (
+      <>
+        <Navbar />
+        <h2>Loading bookings...</h2>
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <Navbar />
+        <h2>
+          Failed to load bookings
+        </h2>
+      </>
+    );
+  }
 
   if (bookings.length === 0) {
     return (
@@ -303,7 +356,7 @@ function MyBookingsPage() {
 
           onConfirm={() => {
 
-            deleteBooking(
+            deleteMutation.mutate(
               selectedBookingId
             );
 

@@ -8,21 +8,6 @@ import { useQuery } from "@tanstack/react-query";
 function EventDetailsPage() {
   const { id } = useParams();
 
-  /*const [event, setEvent] =
-    useState(null); */
-
-  /* useEffect(() => {
-     const fetchEvent =
-       async () => {
-         const data =
-           await getEventById(id);
- 
-         setEvent(data);
-       };
- 
-     fetchEvent();
-   }, [id]); */
-
   const {
     data: event,
     isLoading,
@@ -33,17 +18,6 @@ function EventDetailsPage() {
     staleTime: 1000 * 60 * 5,
   });
 
-  /*if (!event) {
-    return (
-      <>
-        <Navbar />
-        <div className="event-details-loading">
-          <div className="spinner" role="status" aria-label="Loading" />
-          <p className="loading-text">Loading event...</p>
-        </div>
-      </>
-    );
-  } */
 
   if (isLoading) {
     return (

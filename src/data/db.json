@@ -79,5 +79,55 @@
       ]
     }
   ],
-  "bookings": []
+  "bookings": [
+    {
+      "id": "MvMnFkZRTjk",
+      "referenceNumber": "BK-1781649165619",
+      "status": "Confirmed",
+      "eventId": "2",
+      "eventName": "Music Festival",
+      "eventDate": "2026-08-10",
+      "name": "Sara Ranjbar",
+      "email": "taraneh.ranjbar@gmail.com",
+      "phone": "1234567890",
+      "bookingDate": "6/16/2026",
+      "quantity": 1,
+      "ticketType": "General",
+      "ticketPrice": 99,
+      "total": 99
+    },
+    {
+      "id": "j3BNVng9XvI",
+      "referenceNumber": "BK-1781649258323",
+      "status": "Confirmed",
+      "eventId": "4",
+      "eventName": "Art Expo",
+      "eventDate": "2026-10-05",
+      "name": "Sara Ranjbar",
+      "email": "taraneh.ranjbar@gmail.com",
+      "phone": "0909090909",
+      "bookingDate": "6/16/2026",
+      "quantity": 2,
+      "ticketType": "General",
+      "ticketPrice": 99,
+      "total": 198
+    },
+    {
+      "id": "lnacZ50pg9g",
+      "referenceNumber": "BK-1781649810193",
+      "status": "Confirmed",
+      "eventId": "3",
+      "eventName": "NBA Fan Event",
+      "eventDate": "2026-09-20",
+      "name": "Sara Ranjbar",
+      "email": "taraneh.ranjbar@gmail.com",
+      "phone": "6666666666",
+      "bookingDate": "6/16/2026",
+      "quantity": 3,
+      "ticketType": "General",
+      "ticketPrice": 99,
+      "total": 297
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

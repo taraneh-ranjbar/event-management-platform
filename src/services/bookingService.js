@@ -21,3 +21,15 @@ export const deleteBookingApi =
 
     return id;
   };
+
+  export const createBookingApi =
+  async (booking) => {
+
+    const response =
+      await axios.post(
+        API_URL,
+        booking
+      );
+
+    return response.data;
+  };

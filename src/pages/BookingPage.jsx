@@ -13,13 +13,16 @@ import { useParams } from "react-router-dom";
 import ConfirmationModal
   from "../components/ConfirmationModal/ConfirmationModal";
 
-import {
-  BookingContext,
-} from "../context/BookingContext";
-
-import { useContext, } from "react";
-
 import "../styles/BookingPage.css";
+
+import {
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
+
+import {
+  createBookingApi,
+} from "../services/bookingService";
 
 
 function BookingPage() {
@@ -44,7 +47,23 @@ function BookingPage() {
   const [errors, setErrors] = useState({});
   const [showModal, setShowModal] = useState(false);
 
-  const { bookings, setBookings } = useContext(BookingContext);
+  const queryClient =
+    useQueryClient();
+
+  const createBookingMutation =
+    useMutation({
+      mutationFn:
+        createBookingApi,
+
+      onSuccess: () => {
+
+        queryClient.invalidateQueries({
+          queryKey: ["bookings"],
+        });
+
+      },
+    });
+
   const [ticketPrice, setTicketPrice] = useState(99);
   const [event, setEvent] = useState(null);
 
@@ -109,11 +128,9 @@ function BookingPage() {
       newBooking
     );
 
-    setBookings([
-      ...bookings,
-      newBooking,
-    ]);
-
+    createBookingMutation.mutate(
+      newBooking
+    );
     setShowModal(true);
   };
 
