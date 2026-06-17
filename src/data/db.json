@@ -79,26 +79,11 @@
       ]
     },
     {
-      "id": "Ix3td8PvDto",
-      "title": "event1test1",
-      "category": "new",
-      "location": "Thornhill ON",
-      "date": "2026-06-16",
-      "description": "new desc",
-      "image": "https://images.unsplash.com/photo-1511578314322-379afb476865",
-      "ticketTypes": [
-        {
-          "name": "General",
-          "price": 3400
-        }
-      ]
-    },
-    {
-      "id": "_YaHtZ1HTIU",
-      "title": "test2",
-      "description": "123edc",
-      "category": "new test2",
-      "date": "2026-06-16",
+      "id": "1rzOFc-wBCI",
+      "title": "FIFA2.26",
+      "description": "1800 ",
+      "category": "FIFA",
+      "date": "2026-06-20",
       "time": "10:00 AM",
       "location": "Thornhill ON",
       "organizerName": "Community Organizer",
@@ -106,7 +91,25 @@
         {
           "id": "1",
           "name": "General",
-          "price": 123,
+          "price": 1800,
+          "available": 100
+        }
+      ]
+    },
+    {
+      "id": "gGW7rh33UmU",
+      "title": "React",
+      "description": "React - Assessment2",
+      "category": "Assessment2",
+      "date": "2026-06-22",
+      "time": "10:00 AM",
+      "location": "Toronto,ON",
+      "organizerName": "Community Organizer",
+      "ticketTypes": [
+        {
+          "id": "1",
+          "name": "General",
+          "price": 100,
           "available": 100
         }
       ]

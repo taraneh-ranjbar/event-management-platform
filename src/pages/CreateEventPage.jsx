@@ -1,3 +1,5 @@
+
+import { useState } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -49,10 +51,81 @@ function CreateEventPage() {
         );
     };
 
+    const [errors, setErrors] =
+        useState({});
+
+    const [showSuccessModal,
+        setShowSuccessModal] =
+        useState(false);
+
+
     const handleSubmit =
         async (e) => {
 
             e.preventDefault();
+
+            const validationErrors = {};
+
+            if (!event.title.trim()) {
+                validationErrors.title =
+                    "Title is required";
+            }
+
+            if (!event.category.trim()) {
+                validationErrors.category =
+                    "Category is required";
+            }
+
+            if (!event.location.trim()) {
+                validationErrors.location =
+                    "Location is required";
+            }
+
+            const today =
+                new Date()
+                    .toISOString()
+                    .split("T")[0];
+
+            if (!event.date) {
+                validationErrors.date =
+                    "Date is required";
+            }
+            else if (event.date < today) {
+                validationErrors.date =
+                    "Date cannot be in the past";
+            }
+
+            if (
+                !event.price ||
+                Number(event.price) <= 0
+            ) {
+                validationErrors.price =
+                    "Price must be greater than 0";
+            }
+
+            if (
+                !event.description.trim()
+            ) {
+                validationErrors.description =
+                    "Description is required";
+            }
+            else if (
+                event.description.trim().length < 10
+            ) {
+                validationErrors.description =
+                    "Description must be at least 10 characters";
+            }
+
+            if (
+                Object.keys(validationErrors)
+                    .length > 0
+            ) {
+                setErrors(validationErrors);
+                return;
+            }
+
+            setErrors({});
+
 
             const newEvent = {
                 id: Date.now().toString(),
@@ -102,9 +175,7 @@ function CreateEventPage() {
                     newEvent
                 );
 
-                alert(
-                    "Event Created Successfully!"
-                );
+                setShowSuccessModal(true);
 
                 dispatch(
                     clearDraft()
@@ -145,6 +216,15 @@ function CreateEventPage() {
                                 value={event.title}
                                 onChange={handleChange}
                             />
+                            {
+                                errors.title && (
+                                    <span
+                                        className="field-error"
+                                    >
+                                        {errors.title}
+                                    </span>
+                                )
+                            }
                         </div>
 
                         <div className="create-event-field">
@@ -156,6 +236,15 @@ function CreateEventPage() {
                                 value={event.category}
                                 onChange={handleChange}
                             />
+                            {
+                                errors.category && (
+                                    <span
+                                        className="field-error"
+                                    >
+                                        {errors.category}
+                                    </span>
+                                )
+                            }
                         </div>
 
                         <div className="create-event-field">
@@ -167,6 +256,15 @@ function CreateEventPage() {
                                 value={event.location}
                                 onChange={handleChange}
                             />
+                            {
+                                errors.location && (
+                                    <span
+                                        className="field-error"
+                                    >
+                                        {errors.location}
+                                    </span>
+                                )
+                            }
                         </div>
 
                         <div className="create-event-field">
@@ -178,6 +276,15 @@ function CreateEventPage() {
                                 value={event.date}
                                 onChange={handleChange}
                             />
+                            {
+                                errors.date && (
+                                    <span
+                                        className="field-error"
+                                    >
+                                        {errors.date}
+                                    </span>
+                                )
+                            }
                         </div>
 
                         <div className="create-event-field">
@@ -189,6 +296,15 @@ function CreateEventPage() {
                                 value={event.price}
                                 onChange={handleChange}
                             />
+                            {
+                                errors.price && (
+                                    <span
+                                        className="field-error"
+                                    >
+                                        {errors.price}
+                                    </span>
+                                )
+                            }
                         </div>
 
                         <div className="create-event-field create-event-field--full">
@@ -199,6 +315,15 @@ function CreateEventPage() {
                                 value={event.description}
                                 onChange={handleChange}
                             />
+                            {
+                                errors.description && (
+                                    <span
+                                        className="field-error"
+                                    >
+                                        {errors.description}
+                                    </span>
+                                )
+                            }
                         </div>
 
                     </div>
@@ -215,6 +340,41 @@ function CreateEventPage() {
                 </form>
             </div>
         </div>
+
+        {
+            showSuccessModal && (
+                <div className="success-modal-overlay">
+
+                    <div className="success-modal">
+
+                        <div className="success-icon">
+                            ✅
+                        </div>
+
+                        <h2>
+                            Event Created Successfully
+                        </h2>
+
+                        <p>
+                            Your event has been added
+                            successfully.
+                        </p>
+
+                        <button
+                            onClick={() =>
+                                setShowSuccessModal(false)
+                            }
+                            className="create-event-btn"
+                        >
+                            Continue
+                        </button>
+
+                    </div>
+
+                </div>
+            )
+        }
+
     </div>
 
 
