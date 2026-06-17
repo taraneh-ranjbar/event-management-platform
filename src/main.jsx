@@ -13,31 +13,41 @@ import ErrorBoundary
 
 import { QueryClient } from "@tanstack/react-query";
 import { QueryClientProvider } from "@tanstack/react-query";
+import { AuthProvider } from "./context/AuthContext";
+import { Provider }
+  from "react-redux";
+
+import { store }
+  from "./store/store";
 
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(
   document.getElementById("root")
 ).render(
-<React.StrictMode>
+  <React.StrictMode>
 
-  <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
 
-    <ErrorBoundary>
+      <ErrorBoundary>
 
-      <ThemeProvider>
+        <ThemeProvider>
+          <Provider store={store}>
+            <AuthProvider>
 
-        <BookingProvider>
+              <BookingProvider>
 
-          <App />
+                <App />
 
-        </BookingProvider>
+              </BookingProvider>
 
-      </ThemeProvider>
+            </AuthProvider>
+          </Provider>
+        </ThemeProvider>
 
-    </ErrorBoundary>
+      </ErrorBoundary>
 
-  </QueryClientProvider>
+    </QueryClientProvider>
 
-</React.StrictMode>
+  </React.StrictMode>
 );

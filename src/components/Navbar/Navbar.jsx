@@ -45,6 +45,28 @@ function Navbar() {
           >
             My Bookings
           </Link>
+
+          <Link
+            to="/create-event"
+            className={
+              location.pathname === "/create-event"
+                ? "active-link"
+                : ""
+            }
+          >
+            Create Event
+          </Link>
+
+          <Link
+            to="/profile"
+            className={
+              location.pathname === "/profile"
+                ? "active-link"
+                : ""
+            }
+          >
+            Profile
+          </Link>
         </div>
       </div>
 

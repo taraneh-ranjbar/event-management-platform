@@ -1,0 +1,94 @@
+.create-event-page {
+  width: 100%;
+}
+
+.create-event-hero {
+  text-align: center;
+  padding: var(--space-xl) var(--space-md);
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+}
+
+.create-event-subtitle {
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: var(--space-sm) auto 0;
+}
+
+.create-event-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--space-md) var(--space-2xl);
+}
+
+.create-event-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.create-event-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+}
+
+.create-event-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.create-event-field--full {
+  grid-column: 1 / -1;
+}
+
+.create-event-field label {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.create-event-field input,
+.create-event-field textarea {
+  padding: 12px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+
+.create-event-field textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.create-event-field input:focus,
+.create-event-field textarea:focus {
+  outline: none;
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 0 3px var(--gold-subtle);
+}
+
+.create-event-actions {
+  margin-top: var(--space-lg);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.create-event-btn {
+  border: none;
+  cursor: pointer;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  background: var(--gold-primary);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .create-event-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -14,3 +14,15 @@ export const getEventById = async (id) => {
 
   return response.data;
 };
+
+export const createEventApi =
+  async (event) => {
+
+    const response =
+      await axios.post(
+        API_URL,
+        event
+      );
+
+    return response.data;
+  };

@@ -77,6 +77,39 @@
           "available": 200
         }
       ]
+    },
+    {
+      "id": "Ix3td8PvDto",
+      "title": "event1test1",
+      "category": "new",
+      "location": "Thornhill ON",
+      "date": "2026-06-16",
+      "description": "new desc",
+      "image": "https://images.unsplash.com/photo-1511578314322-379afb476865",
+      "ticketTypes": [
+        {
+          "name": "General",
+          "price": 3400
+        }
+      ]
+    },
+    {
+      "id": "_YaHtZ1HTIU",
+      "title": "test2",
+      "description": "123edc",
+      "category": "new test2",
+      "date": "2026-06-16",
+      "time": "10:00 AM",
+      "location": "Thornhill ON",
+      "organizerName": "Community Organizer",
+      "ticketTypes": [
+        {
+          "id": "1",
+          "name": "General",
+          "price": 123,
+          "available": 100
+        }
+      ]
     }
   ],
   "bookings": [
@@ -127,6 +160,22 @@
       "ticketType": "General",
       "ticketPrice": 99,
       "total": 297
+    },
+    {
+      "id": "Joec78YJ98c",
+      "referenceNumber": "BK-1781664280423",
+      "status": "Confirmed",
+      "eventId": "Ix3td8PvDto",
+      "eventName": "event1test1",
+      "eventDate": "2026-06-16",
+      "name": "testnew",
+      "email": "testnew@g.com",
+      "phone": "6578765439",
+      "bookingDate": "6/16/2026",
+      "quantity": 1,
+      "ticketType": "General",
+      "ticketPrice": 99,
+      "total": 99
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
