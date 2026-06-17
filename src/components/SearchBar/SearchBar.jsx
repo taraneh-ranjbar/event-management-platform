@@ -1,15 +1,31 @@
-import { useEffect, useRef } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  useDeferredValue,
+} from "react";
 import "../../styles/EventsPage.css";
-  
+
 function SearchBar({
   searchTerm,
   setSearchTerm
 }) {
   const inputRef = useRef(null);
 
+  const [localValue, setLocalValue] =
+    useState(searchTerm);
+
+  const deferredValue =
+    useDeferredValue(localValue);
+
   useEffect(() => {
-    inputRef.current.focus();
-  }, []);
+    setSearchTerm(
+      deferredValue
+    );
+  }, [
+    deferredValue,
+    setSearchTerm,
+  ]);
 
   return (
     <div className="search-bar">
@@ -20,9 +36,11 @@ function SearchBar({
           ref={inputRef}
           type="text"
           placeholder="Search events by title..."
-          value={searchTerm}
+          value={localValue}
           onChange={(e) =>
-            setSearchTerm(e.target.value)
+            setLocalValue(
+              e.target.value
+            )
           }
           aria-label="Search events"
         />

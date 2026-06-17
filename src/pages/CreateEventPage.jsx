@@ -122,7 +122,6 @@ function CreateEventPage() {
 
     return (<div className="create-event-page"> <Navbar />
 
-        ```
         <section className="create-event-hero">
             <h1>Create Event</h1>
 
